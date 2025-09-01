@@ -1,0 +1,18 @@
+{
+  "name": "dom-web",
+  "version": "1.0.0",
+  "main": "domserver.js",
+  "scripts": {
+    "start": "node domserver.js",
+    "dev": "nodemon domserver.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mssql": "^11.0.1",
+    "multer": "^2.0.2"
+  }
+}

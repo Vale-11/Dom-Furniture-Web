@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DOMWOOD PRODUCTS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="domwood.css">
+</head>
+<body>
+      <!-- Admin Login Button -->
+      <div class="admin-login-btn" id="adminLoginBtn">
+        <i class="fas fa-lock"></i>
+    </div>
+    
+    <!-- Admin Login Modal -->
+    <div class="admin-login-modal" id="adminLoginModal">
+        <div class="login-content">
+            <span class="close-login">&times;</span>
+            <h3>Admin Login</h3>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+            <button id="loginBtn">Login</button>
+        </div>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h3>Admin Dashboard</h3>
+            <button id="logoutBtn">Logout <i class="fas fa-sign-out-alt"></i></button>
+        </div>
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="products">Products</button>
+            <button class="tab-btn" data-tab="images">Images</button>
+        </div>
+        
+        <!-- Products Tab -->
+        <div class="admin-tab-content active" id="productsTab">
+            <div class="admin-form">
+                <h4>Add New Product</h4>
+                <input type="text" id="productName" placeholder="Product Name">
+                <textarea id="productDescription" placeholder="Description"></textarea>
+                <input type="text" id="productCategory" placeholder="Category">
+                <input type="number" id="productPrice" placeholder="Price">
+                <input type="file" id="productImages" multiple accept="image/*">
+                <button id="addProductBtn">Add Product</button>
+            </div>
+            
+            <div class="product-list" id="productList">
+                <h4>Existing Products</h4>
+                <!-- Products will be loaded here dynamically -->
+            </div>
+        </div>
+        
+        <!-- Images Tab -->
+        <div class="admin-tab-content" id="imagesTab">
+            <div class="admin-form">
+                <h4>Upload Images</h4>
+                <input type="file" id="bulkImageUpload" multiple accept="image/*">
+                <select id="imageCategory">
+                    <option value="chairs">Chairs</option>
+                    <option value="tables">Tables</option>
+                    <option value="cabinets">Cabinets</option>
+                </select>
+                <button id="uploadImagesBtn">Upload Images</button>
+            </div>
+            
+            <div class="image-gallery" id="imageGallery">
+                <!-- Images will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">DOMWOOD</div>
+        <div class="search-container">
+            <form id="searchForm" class="search-form">
+                <input type="text" id="searchInput" placeholder="Search..." autocomplete="off" aria-label="Search">
+                <button type="submit" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </header>
+    
+    <nav class="nav-menu" id="navMenu">
+        <div class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+            
+            <!-- Products Menu Item with Preview -->
+            <li class="menu-products">
+                <a href="#" class="nav-link" data-page="products"><i class="fas fa-box-open"></i> Products</a>
+                <div class="product-preview">
+                    <!-- Product preview items will be loaded dynamically -->
+                </div>
+            </li>
+            
+            <li><a href="#" class="nav-link" data-page="services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-address-book"></i> Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <!-- Home Page -->
+        <div class="page home-page active" id="home">
+            <div class="content-wrapper">
+                <div class="content">
+                    <h1 class="company-name">DOMWOOD PRODUCTS</h1>
+                    <p class="welcome-text">
+                        Welcome to Domwood Products – Where Elegance Meets Functionality. We transform spaces into timeless masterpieces through bespoke furniture and expert interior design. Whether you're revamping your home, office, or commercial space, our craftsmanship and creative vision ensure perfection in every detail. Explore our world of tailored interiors today!
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Us Page -->
+        <div class="page" id="about">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    <h2>About Us</h2>
+                    <p>
+                        At Domwood Products, we believe spaces should reflect individuality. Founded in 2010, our team of skilled designers and master carpenters blends artistry with precision to deliver exceptional interiors and handcrafted furniture. With a passion for innovation and an eye for detail, we turn your vision into reality—one stitch, stroke, and grain at a time.
+                    </p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Why Choose Us?</h2>
+                    <ul class="benefits-list">
+                        <li>Decades of combined expertise in design & woodworking</li>
+                        <li>Client-centric approach, from concept to installation</li>
+                        <li>Sustainable practices with ethically sourced materials</li>
+                        <li>Portfolio of stunning residential & commercial projects</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Products Page -->
+        <div class="page" id="products">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    <h2>Our Products</h2>
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Product cards will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Services Page -->
+        <div class="page active" id="services">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    <h2>Services Offered</h2>
+                    <h3>Comprehensive Interior Design Services:</h3>
+                    
+                    <div class="services-grid">
+                        <div class="service-category">
+                            <h3>Space Planning</h3>
+                            <p>Optimizing layouts for aesthetics & functionality.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Color & Material Consultations</h3>
+                            <p>Curating palettes and textures.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Lighting Design</h3>
+                            <p>Ambient, task, and accent lighting solutions.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Custom Wall Finishes</h3>
+                            <p>Wallpapers, paneling, and decorative treatments.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Kitchen & Bathroom Design</h3>
+                            <p>Ergonomic and luxurious remodels.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Commercial Interiors</h3>
+                            <p>Offices, hotels, and retail spaces.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3>Bespoke Furniture & Carpentry:</h3>
+                    
+                    <div class="services-grid">
+                        <div class="service-category">
+                            <h3>Handcrafted Furniture</h3>
+                            <p>Tables, chairs, beds, and storage units.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Built-in Cabinetry</h3>
+                            <p>Wardrobes, bookshelves, and entertainment units.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Doors & Windows</h3>
+                            <p>Custom designs with premium wood.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Restoration</h3>
+                            <p>Repair and refinishing of antique furniture.</p>
+                        </div>
+                        
+                        <div class="service-category">
+                            <h3>Outdoor Furniture</h3>
+                            <p>Durable, weather-resistant pieces.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3>Add-Ons:</h3>
+                    <ul>
+                        <li>3D Rendering (visualization before execution)</li>
+                        <li>Project management (handling contractors/vendors)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Page -->
+        <div class="page" id="contact">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    <h2>Contact Information</h2>
+                    <p><i class="fas fa-envelope"></i> Email: domwoodproducts@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: (+254) 722-958-484</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Address: Umoja Mutindwa, Nairobi, Kenya.</p>
+                    <p><i class="fas fa-clock"></i> Business Hours: Monday-Sunday, 9:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/domwoodproducts/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://ke.linkedin.com/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; <span id="current-year"></span> DOMWOOD PRODUCTS. All Rights Reserved.
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <script src="domwood.js"></script>
+    <script src="domserver.js"></script>
+</body>
+</html>
